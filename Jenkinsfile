@@ -40,5 +40,23 @@ pipeline{
         
         
     }
+    post {
+        success {
+            mail to: 'abbasajmal9@gmail.com',
+                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                 body: "Good news! The job succeeded.\n\nCheck details: ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: 'abbasajmal9@gmail.com',
+                 subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                 body: "Oops! The job failed.\n\nCheck details: ${env.BUILD_URL}"
+        }
+        always {
+            echo 'This always runs (e.g. cleanup)'
+        }
+    }
+    
+    
+    
     
 }
