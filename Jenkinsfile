@@ -15,7 +15,7 @@ pipeline{
                script{
                    trivy()
             }
-        }
+        }}
         stage("Build"){
             steps{
                 sh "docker build -t two-tier-flask ."
