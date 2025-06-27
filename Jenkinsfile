@@ -12,7 +12,8 @@ pipeline{
         }
         stage("scane code with trivy"){
             steps{
-               sh "trivy fs . -o results.json"
+               script{
+                   trivy()
             }
         }
         stage("Build"){
