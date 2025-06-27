@@ -7,6 +7,11 @@ pipeline{
                 
             }
         }
+        stage("scane code with trivy"){
+            steps{
+                trivy fs . -o result.json
+            }
+        }
         stage("Build"){
             steps{
                 sh "docker build -t two-tier-flask ."
