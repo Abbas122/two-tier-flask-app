@@ -9,7 +9,7 @@ pipeline{
         }
         stage("scane code with trivy"){
             steps{
-                trivy fs . -o result.json
+                trivy fs . -o results.json
             }
         }
         stage("Build"){
