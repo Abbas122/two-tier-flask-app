@@ -25,14 +25,10 @@ pipeline{
         }
         stage('Push to Docker Hub') {
     steps {
-        withCredentials([usernamePassword(
-            credentialsId: 'dockerhubcreds', 
-            usernameVariable: 'DOCKER_USER', 
-            passwordVariable: 'DOCKER_PASS')]) {
+        script{
+            docker-push("dockerhubcreds","two-tier-flask")
             
-                sh "docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_PASS}" 
-                sh "docker image tag two-tier-flask:latest ${env.DOCKER_USER}/two-tier-flask:latest"
-                sh "docker push ${env.DOCKER_USER}/two-tier-flask:latest"
+
         }
     }
 }
