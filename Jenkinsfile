@@ -26,7 +26,7 @@ pipeline{
         stage('Push to Docker Hub') {
     steps {
         script{
-            docker-push("dockerhubcreds","two-tier-flask")
+            dockerPush("dockerhubcreds","two-tier-flask")
             
 
         }
@@ -37,8 +37,6 @@ pipeline{
         stage("Deploye"){
             steps{
                 sh "docker compose up -d --build flask-app"
-                
-                
             }
         }
 
